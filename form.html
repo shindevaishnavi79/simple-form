@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+<style>
+
+ body{
+   border: 2px solid black;
+   margin: auto;
+   padding-bottom:40px ;
+   padding-left: 10px;
+   text-align:left;
+
+ }
+  .box{
+    box-sizing: 0 0 5px rgba(0,0,0,0.2);
+    text-align:left;
+    font-size: 17px;
+  }
+  span{
+    color:red;
+  }
+</style>
+
+
+</head>
+<body>
+
+<script>
+   function validation()
+   {
+     var rexp=/^[a-zA-z ]+$/;
+     var a = document.getElementById("full_name").value;
+     var b = document.getElementById("mob").value;
+
+
+
+     if(a=="")
+     {
+       document.getElementById("message").innerHTML = "please fill text full name !";
+       return false;
+     }
+     if(a.length>=10){
+       document.getElementById("message").innerHTML = "** full name must be less than or equal to 10 character";
+       return false;
+     }
+     if(a.match(rexp))
+       true;
+       else{
+         document.getElementById("message").innerHTML = "** only alphabet allowed";
+         return false;
+       }
+
+      if(b==""){
+        document.getElementById("worning").innerHTML = "** please fill mobile number";
+        return false;
+      }
+      if(isNaN(b)){
+        document.getElementById("worning").innerHTML = "** enter only Numeric value";
+        return false;
+      }
+      if(b.length<10){
+        document.getElementById("worning").innerHTML = "** mobile no must be 10 digit";
+        return false;
+      }
+
+      if(b.length>10){
+        document.getElementById("worning").innerHTML = "** mobile no must be 10 digit";
+        return false;
+      }
+
+      if((b.charAt(0)!=9)  && (b.charAt(0)!=8)  && (b.charAt(0)!=7)){
+        document.getElementById("worning").innerHTML = "** mobile no must be start with 9,8,7";
+        return false;
+      }
+
+
+
+   }
+
+   function generate(){
+
+     /*otp genetation start*/
+
+           let num="1234567890";
+           let OTP="";
+
+           for(let i=0;i<4;i++){
+             OTP +=num[Math.floor(Math.random()*10)];
+           }
+           document.getElementById("otp").innerHTML=OTP;
+
+   }
+</script>
+
+  <h1>FORM</h1>
+   <form onsubmit="return validation()">
+
+       Full Name: <input type="text" id="full_name" >
+       <span id="message">  </span><br><br>
+
+      Email ID  : <input type="email" name="email" ><br><br>
+       Mobile No : <input type="tel"  id="mob" ><span id="worning"></span><br><br>
+
+       <div class="box">
+         Dear Customer,Your OTP for registration is <span id ="otp"></span>
+       </div><br>
+      <input type="submit"  value="Submit"> </input>
+      <button type="button"  onclick="generate()"> Generate OTP </button>
+
+
+
+
+
+
+  </form>
+</body>
+</html>
